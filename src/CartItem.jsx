@@ -32,6 +32,11 @@ const CartItem = ({ onContinueShopping }) => {
   const calculateTotalCost = (item) => {
   };
 
+  const handleCheckoutShopping = (e) => {
+  alert('Functionality to be added for future reference');
+};
+
+
   return (
     <div className="cart-container">
       <h2 style={{ color: 'black' }}>Total Cart Amount: ${calculateTotalAmount()}</h2>

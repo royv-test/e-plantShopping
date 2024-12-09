@@ -2,40 +2,55 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { removeItem, updateQuantity } from './CartSlice';
 import './CartItem.css';
-
 const CartItem = ({ onContinueShopping }) => {
   const cart = useSelector(state => state.cart.items);
   const dispatch = useDispatch();
 
   // Calculate total amount for all products in the cart
-  const calculateTotalAmount = () => {
- 
+    const calculateTotalAmount = () => {
+
+    return cart.reduce((total, item) => total + item.quantity * parseFloat(item.cost.replace('$', '')), 0).toFixed(2);
   };
 
+  // Handle continue shopping button
   const handleContinueShopping = (e) => {
-   
+
+    e.preventDefault();
+    onContinueShopping(); // Calls the parent function to redirect back to the product list
   };
 
 
 
+  // Increment the quantity of an item
   const handleIncrement = (item) => {
+    dispatch(updateQuantity({ name: item.name, quantity: item.quantity + 1 }));
   };
 
+  // Decrement the quantity of an item
   const handleDecrement = (item) => {
-   
+
+    if (item.quantity > 1) {
+      dispatch(updateQuantity({ name: item.name, quantity: item.quantity - 1 }));
+    } else {
+      handleRemove(item); // Remove the item if quantity is 0
+    }
   };
 
+  // Remove an item from the cart
   const handleRemove = (item) => {
+    dispatch(removeItem(item.name));
   };
 
   // Calculate total cost based on quantity for an item
+  // Calculate total cost for a specific item
   const calculateTotalCost = (item) => {
+    return (item.quantity * parseFloat(item.cost.replace('$', ''))).toFixed(2);
   };
 
-  const handleCheckoutShopping = (e) => {
-  alert('Functionality to be added for future reference');
-};
-
+  // Handle checkout button (for future implementation)
+  const handleCheckoutShopping = () => {
+    alert('Functionality to be added for future reference');
+  };
 
   return (
     <div className="cart-container">
@@ -69,5 +84,3 @@ const CartItem = ({ onContinueShopping }) => {
 };
 
 export default CartItem;
-
-

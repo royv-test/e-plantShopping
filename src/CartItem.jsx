@@ -44,7 +44,7 @@ const CartItem = ({ onContinueShopping }) => {
 
   // Handle checkout button (for future implementation)
   const handleCheckoutShopping = () => {
-    alert('Functionality to be added for future reference');
+    alert('You must pay first');
   };
 
   return (

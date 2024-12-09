@@ -18,9 +18,9 @@ function App() {
         <div className="background-image"></div>
         <div className="content">
          <div className="landing_content">
-         <h1>Welcome To Paradise Nursery</h1>
+         <h1>Good Day to the Funny Other Plants</h1>
           <div className="divider"></div>
-          <p>Where Green Meets Serenity</p>
+          <p>Where Your Day Will Change</p>
          
           <button className="get-started-button" onClick={handleGetStartedClick}>
             Get Started

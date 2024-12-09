@@ -169,9 +169,9 @@ body {
     /* background-color: red; */
     margin-left: 27px;
     position: absolute;
-    font-size: 29px;
+    font-size: 25px;
 
-}
+ }
 .plantname_heading{
    display: flex;
    align-items: center;

@@ -9,7 +9,8 @@ function ProductList() {
     const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
     const [addedToCart, setAddedToCart] = useState({}); // Code Kopiert
     const dispatch = useDispatch() // Code kopiert
-
+//    const cart = useSelector((state) => state.cart.items);
+//    const totalQuantity = useSelector((state) => state.cart.totalQuantity);
     const plantsArray = [
         {
             category: "Air Purifying Plants",
@@ -252,6 +253,7 @@ const handlePlantsClick = (e) => {
     setShowCart(false);
   };
   const handleAddToCart = (product) => {
+     console.log("Items getting added...", product); // Neuer Code
     dispatch(addItem(product));
     setAddedToCart((prevState) => ({
        ...prevState,
@@ -294,7 +296,17 @@ const handlePlantsClick = (e) => {
                 <div className="product-title">{plant.description}</div>
                 <div className="product-title">{plant.cost}</div>
 
-                <button  className="product-button" onClick={() => handleAddToCart(plant)}>Add to Cart</button>
+                <button
+                    className={`product-button ${addedToCart.hasOwnProperty(plant.name) ? "disabled" : ""
+                    }`}
+                    onClick={() => handleAddToCart(plant)}
+                    disabled={addedToCart.hasOwnProperty(plant.name)} //Disable button if product is in disabledProducts
+                    >
+                    {addedToCart.hasOwnProperty(plant.name)
+                    ? "Product added to your cart"
+                    : "Product Add to Cart"}
+                </button>
+
             </div>
             ))}
         </div>
